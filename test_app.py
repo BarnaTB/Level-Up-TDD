@@ -13,5 +13,9 @@ class TestUser(unittest.TestCase):
         self.user
 
     def test_validate_email(self):
-        """Test a valid email is allowed"""
+        """Test a valid email is valid"""
         self.assertEqual(self.user.validate_email(), True)
+
+    def test_validate_password(self):
+        """Test a password is valid"""
+        self.assertEqual(self.user.validate_password(), False)
