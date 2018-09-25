@@ -1,0 +1,4 @@
+[
+  "test_app.py::TestUser::test_creation",
+  "test_app.py::TestUser::test_validate_email"
+]
