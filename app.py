@@ -47,3 +47,58 @@ class User:
             return False
         else:
             return True
+
+    def validate_user_names(self):
+        """
+        Method validates that the username and name of the user are not
+        less than 4 characters long and are not not equal to each other.
+
+        :returns:
+
+        True - if the username is not equal to the name or if they are not
+        less than 4 characters long.
+
+        False - if the username is equal to the name or if they are
+        less than 4 characters long.
+        """
+        if self.username == self.name and len(self.username) < 4 and\
+                len(self.name) < 4:
+            return False
+        else:
+            return True
+
+    def validate_age(self):
+        """
+        Method checks that the user's age is an integer greater or equal to 0.
+
+        :returns:
+
+        True - if the age of the user is an integer greater or equal to 0.
+
+        False - if the age of the user is not an integer that is greater than 0.
+        """
+        if not isinstance(self.age, int) or self.age < 0:
+            return False
+        else:
+            return True
+
+    def register_user(self):
+        user = dict(
+            name=self.name,
+            username=self.username,
+            email=self.email,
+            password=self.password,
+            age=self.age
+        )
+        if not self.validate_age():
+            return 'You age cannot be a negative number or a string!'
+        if not self.validate_email():
+            return 'Invalid email! Email should in the form - johndoe@mail.com'
+        if not self.validate_password:
+            return 'Password should contain an uppercase, lowercase and a\
+                number character and be at least 4 characters long!'
+        if not self.validate_user_names:
+            return 'Your username cannot be the same as your name and less\
+                than 4 characters long!'
+        else:
+            self.users.append(user)
