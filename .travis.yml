@@ -2,9 +2,6 @@ language: python
 python:
   - "3.5"
 
-env:
-  global:
-    - CC_TEST_REPORTER_ID=0a47205c8001662f4a41512154eb2fcf6ff8a65bc5b51909259370038fe57576
 # command to install dependencies
 install:
   - "pip install -r requirements.txt"
