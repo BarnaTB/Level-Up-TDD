@@ -1,16 +1,24 @@
 language: python
 python:
   - "3.5"
+
+env:
+  global:
+    - CODECLIMATE_REPO_TOKEN=0a47205c8001662f4a41512154eb2fcf6ff8a65bc5b51909259370038fe57576
 # command to install dependencies
 install:
   - "pip install -r requirements.txt"
 
+before-script:
+  - ./codeclimate-test-reporter before-build
 
 # command to run tests
 script:
    - nosetests --with-coverage --cover-tests
    - coverage report
 
+after_script:
+  - ./codeclimate-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 after_success:
   - coveralls
