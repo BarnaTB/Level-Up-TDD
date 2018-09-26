@@ -2,12 +2,13 @@ import re
 
 
 class User:
-    def __init__(self, name, username, email, age, password):
-        self.name = name
-        self.username = username
-        self.email = email
-        self.age = age
-        self.password = password
+    def __init__(self, *args):
+        self.name = args[0]
+        self.username = args[1]
+        self.email = args[2]
+        self.age = args[3]
+        self.password = args[4]
+        self.is_active = False
         self.users = []
 
     def validate_email(self):
@@ -75,7 +76,8 @@ class User:
 
         True - if the age of the user is an integer greater or equal to 0.
 
-        False - if the age of the user is not an integer that is greater than 0.
+        False - if the age of the user is not an integer that is greater than
+        0.
         """
         if not isinstance(self.age, int) or self.age < 0:
             return False
@@ -83,12 +85,21 @@ class User:
             return True
 
     def register_user(self):
+        """
+        Method registers a user using their username, name, age, password and
+        email.
+
+        :returns:
+
+        A success message upon the succesfull registration of the user.
+        """
         user = dict(
             name=self.name,
             username=self.username,
             email=self.email,
             password=self.password,
-            age=self.age
+            age=self.age,
+            active=self.is_active
         )
         if not self.validate_age():
             return 'You age cannot be a negative number or a string!'
@@ -102,3 +113,43 @@ class User:
                 than 4 characters long!'
         else:
             self.users.append(user)
+            return 'User {0} has been registered\
+ successfully!'.format(self.username)
+
+    def login_user(self, username, password):
+        """
+        Method logs in a user to their account.
+
+        :returns:
+
+        True for the value of is_active
+        """
+        for user in self.users:
+            if username not in user['name']:
+                return 'Sorry this user does not exist!'
+            if user['username'] == username and user['password'] == password:
+                self.is_active = True
+                return 'You are logged in now'
+            else:
+                return 'Sorry wrong email or password!'
+
+    def fetch_all_info(self, username):
+        """
+        Method checks all a user's information on the platform and returns it.
+
+        :returns:
+
+        A list of all a user's information.
+        """
+        for user in self.users:
+            if username not in user.keys():
+                return 'Sorry, this user does not exist!'
+            if user['username'] == username and user['is_active'] is False:
+                return 'Please log in first!'
+            return '''Name: {0},
+                    Username: {1},
+                    Email: {2},
+                    Age: {3}
+                    '''.format(
+                user['name'], user['username'],
+                user['email'], user['age'])
