@@ -52,3 +52,21 @@ class TestUser(unittest.TestCase):
             self.legit_user.login_user('Barna', 'P@ss123'),
             'You are logged in now'
         )
+
+    def test_fetch_all_info(self):
+        """
+        Test that a user can fetch all their information on the application
+        """
+        self.assertEqual(
+            self.legit_user.register_user(),
+            'User Barna has been registered successfully!'
+        )
+        self.assertEqual(
+            self.legit_user.login_user('Barna', 'P@ss123'),
+            'You are logged in now'
+        )
+
+        self.assertEqual(self.legit_user.fetch_all_info('Barna'), '''Name: Barnabas Tumuhairwe,\
+ Username: Barna,\
+ Email: barna@gmail.com,\
+ Age: 21''')

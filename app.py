@@ -8,7 +8,7 @@ class User:
         self.email = args[2]
         self.age = args[3]
         self.password = args[4]
-        self.is_active = False
+        self.active = False
         self.users = []
 
     def validate_email(self):
@@ -99,7 +99,7 @@ class User:
             email=self.email,
             password=self.password,
             age=self.age,
-            active=self.is_active
+            active=self.active
         )
         if not self.validate_age():
             return 'You age cannot be a negative number or a string!'
@@ -128,7 +128,7 @@ class User:
             if username not in user['name']:
                 return 'Sorry this user does not exist!'
             if user['username'] == username and user['password'] == password:
-                self.is_active = True
+                user['active'] = True
                 return 'You are logged in now'
             else:
                 return 'Sorry wrong email or password!'
@@ -142,14 +142,14 @@ class User:
         A list of all a user's information.
         """
         for user in self.users:
-            if username not in user.keys():
+            if username not in user['username']:
                 return 'Sorry, this user does not exist!'
-            if user['username'] == username and user['is_active'] is False:
+            if user['username'] == username and user['active'] is False:
                 return 'Please log in first!'
-            return '''Name: {0},
-                    Username: {1},
-                    Email: {2},
-                    Age: {3}
-                    '''.format(
+            # import pdb; pdb.set_trace();
+            return '''Name: {0}, \
+Username: {1}, \
+Email: {2}, \
+Age: {3}'''.format(
                 user['name'], user['username'],
                 user['email'], user['age'])
