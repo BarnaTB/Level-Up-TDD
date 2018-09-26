@@ -22,4 +22,4 @@ script:
 
 after_success:
   - coveralls
-  - codeclimate-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - codeclimate-test-reporter
