@@ -22,4 +22,4 @@ script:
 
 after_success:
   - coveralls
-  - codeclimate-test-reporter
+  - codeclimate-test-reporter -i
