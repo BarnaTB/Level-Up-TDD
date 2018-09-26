@@ -10,7 +10,7 @@ install:
   - "pip install -r requirements.txt"
 
 before-script:
-  - ./cc-test-reporter before-build
+  - cc-test-reporter before-build
 
 # command to run tests
 script:
@@ -21,4 +21,4 @@ after_success:
   - coveralls
 
 # after_build:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
