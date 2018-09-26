@@ -14,7 +14,8 @@ before-script:
 
 # command to run tests
 script:
-   - py.test --cov-report term-missing --cov app -v
+   - nosetests --with-coverage --cover-tests
+   - coverage report
 
 after_success:
   - coveralls
