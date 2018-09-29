@@ -9,7 +9,7 @@ env:
 # command to install dependencies
 install:
   - "pip install -r requirements.txt"
-  - "pip install --user codecov"
+  - "pip install codecov"
 
 before-script:
   - codeclimate-test-reporter before-build
