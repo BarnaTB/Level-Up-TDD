@@ -1,6 +1,10 @@
 language: python
 python:
   - "3.5"
+  
+env:
+  global:
+    - CODECOV_TOKEN="5c2b184f-65e6-4513-b6cd-fda33688ca81"
 
 # command to install dependencies
 install:
