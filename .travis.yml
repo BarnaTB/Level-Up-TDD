@@ -15,7 +15,7 @@ before-script:
 
 # command to run tests
 script:
-   - nosetests --with-coverage
+   - nosetests --with-coverage --cover-tests
 
 after_success:
   - coveralls
